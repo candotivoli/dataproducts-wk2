@@ -1,0 +1,20 @@
+---
+title: "Football Grounds"
+author: "candotivoli"
+date: "28 November 2016"
+output: html_document
+---
+
+This pages maps the main soccer stadiums in England. Click on a marker to see the name and capacity.
+
+```{r}
+library(leaflet)
+df <- read.csv('grounds.csv')
+
+df %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(clusterOptions = markerClusterOptions(), popup=paste(df$popup, ' (', df$capacity, ')'))
+
+```
+
